@@ -96,6 +96,7 @@ void updateManualTime() {
 		case MAN_GREEN:
 			tempGreen	+= 1;
 			tempRed		+= 1;
+			if(tempGreen >= 100) tempGreen = 1;
 			break;
 
 		default:
