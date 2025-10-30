@@ -1,0 +1,5 @@
+mode_control.c:24:6:entryState	16	static
+mode_control.c:40:6:restoreBackup	4	static
+mode_control.c:48:6:checkMode	8	static
+mode_control.c:77:6:updateManualTime	8	static
+mode_control.c:107:6:saveManualTime	8	static

@@ -1,0 +1,10 @@
+setTrafficLed.c:12:6:turnOffMainLeds	8	static
+setTrafficLed.c:21:6:turnOffSubLeds	8	static
+setTrafficLed.c:29:6:blinkyLedMain	24	static
+setTrafficLed.c:38:6:blinkyLedSub	24	static
+setTrafficLed.c:48:6:redOnMain	8	static
+setTrafficLed.c:60:6:yellowOnMain	8	static
+setTrafficLed.c:70:6:greenOnMain	8	static
+setTrafficLed.c:81:6:redOnSub	8	static
+setTrafficLed.c:92:6:yellowOnSub	8	static
+setTrafficLed.c:102:6:greenOnSub	8	static

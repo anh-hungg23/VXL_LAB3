@@ -1,0 +1,4 @@
+set7SEG.c:20:6:display7SEG	16	static
+set7SEG.c:117:6:updateCountTime	16	static
+set7SEG.c:137:6:showTime	16	static
+set7SEG.c:171:6:updateCountdown	8	static
