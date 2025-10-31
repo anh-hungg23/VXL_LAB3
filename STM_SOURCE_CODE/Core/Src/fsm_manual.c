@@ -21,50 +21,32 @@ void fsm_manual_run() {
 	case MAN_RED:
 		redOnMain();
 		redOnSub();
-		mainTimeRemain = tempRed;
-		subTimeRemain  = tempRed;
-		updateCountTime(mainTimeRemain, subTimeRemain);
-		if(isTimerExpired(&timeNoReact)) {
-			mode = MODE_AUTO;
-			main_status = MAIN_INIT;
-			sub_status  = SUB_INIT;
-			setTimer(&timeNoReact,100);
-		}
+		updateCountTime(tempRed,tempRed);
 		break;
 
 	case MAN_YEL:
 		yellowOnMain();
 		yellowOnSub();
-		mainTimeRemain = tempYel;
-		subTimeRemain  = tempYel;
-		updateCountTime(mainTimeRemain, subTimeRemain);
-		if(isTimerExpired(&timeNoReact)) {
-			mode = MODE_AUTO;
-			main_status = MAIN_INIT;
-			sub_status  = SUB_INIT;
-			setTimer(&timeNoReact,100);
-		}
-
+		updateCountTime(tempYel, tempYel);
 		break;
 
 	case MAN_GREEN:
 		greenOnMain();
 		greenOnSub();
-		mainTimeRemain = tempGreen;
-		subTimeRemain  = tempGreen;
-		updateCountTime(mainTimeRemain, subTimeRemain);
-		if(isTimerExpired(&timeNoReact)) {
-			mode = MODE_AUTO;
-			main_status = MAIN_INIT;
-			sub_status  = SUB_INIT;
-			setTimer(&timer1,100);
-		}
-
+		updateCountTime(tempGreen,tempGreen);
 		break;
 	default:
 		break;
 	}
+	//updateManualTime();
+	if(isTimerExpired(&timeNoReact)) {
+		mode = MODE_AUTO;
+		main_status = MAIN_INIT;
+		sub_status  = SUB_INIT;
+		setTimer(&timer1,100);
+	}
 	updateManualTime();
 	saveManualTime();
+
 }
 

@@ -15,5 +15,7 @@ void entryState(int state);
 void checkMode();
 void updateManualTime();
 void saveManualTime();
+int clamp(int value);
+void switchManualMode();
 
 #endif /* INC_MODE_CONTROL_H_ */

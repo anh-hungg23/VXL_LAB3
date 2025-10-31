@@ -21,6 +21,22 @@ int backupYel = 0;
 int backupGreen = 0;
 uint8_t isEditted;
 
+void switchManualState() {
+	if(manual_status == MAN_RED) manual_status = MAN_YEL;
+	else if (manual_status == MAN_YEL) manual_status = MAN_GREEN;
+	else if (manual_status == MAN_GREEN) {
+		mode = MODE_AUTO;
+		main_status = MAIN_INIT;
+		sub_status = SUB_INIT;
+	}
+}
+
+int clamp(int value){
+	if(value < 1) return 1;
+	if(value > 99) return 1;
+	return value;
+}
+
 void entryState(int state) {
 	manual_status = state;
 
@@ -55,27 +71,13 @@ void checkMode() {
 			if(isEditted == 1) {
 				restoreBackup();
 			}
-			switch(manual_status) {
-			case MAN_RED:
-				entryState(MAN_YEL);
-				break;
-
-			case MAN_YEL:
-				entryState(MAN_GREEN);
-				break;
-
-			case MAN_GREEN:
-                mode = MODE_AUTO;
-                main_status = MAIN_INIT;
-                sub_status  = SUB_INIT;
-                break;
-			}
+			switchManualState();
 		}
 	}
 }
 
 void updateManualTime() {
-	if(isButtonPressed(&button2) && mode == MODE_MANUAL) {
+	if(isButtonPressed(&button2) && (mode == MODE_MANUAL)) {
 		isEditted = 1;
 
 		setTimer(&timeNoReact,10000);
@@ -83,30 +85,36 @@ void updateManualTime() {
 		switch(manual_status) {
 		case MAN_RED:
 			tempRed   += 1;
-			tempGreen += 1;
-			if (tempRed >= 100) tempRed = 1;
+			tempGreen = tempRed - tempYel;
 			break;
 
 		case MAN_YEL:
 			tempYel		+= 1;
-			tempRed 	+= 1;
-			if(tempYel >= 100) tempYel = 1;
+			tempGreen 	= tempRed - tempYel;
 			break;
 
 		case MAN_GREEN:
 			tempGreen	+= 1;
-			tempRed		+= 1;
-			if(tempGreen >= 100) tempGreen = 1;
+			tempYel		= tempRed - tempGreen;
 			break;
 
 		default:
 			break;
 		}
+		tempRed    = clamp(tempRed);
+		tempGreen  = clamp(tempGreen);
+		tempYel    = clamp(tempYel);
+
 	}
 }
 
 void saveManualTime(){
 	if(isButtonPressed(&button3) && mode == MODE_MANUAL){
+		if(tempRed != (tempYel + tempGreen)) {
+			tempRed = CONST_RED;
+			tempYel = CONST_YEL;
+			tempGreen = CONST_GREEN;
+		}
 		switch(manual_status) {
 		case MAN_RED:
 			timeRed   = tempRed   * 1000;

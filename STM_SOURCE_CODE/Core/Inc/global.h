@@ -55,6 +55,9 @@ extern Button button3;
 #define SUB_YEL		13
 #define	SUB_GREEN	14
 
+#define CONST_RED   5
+#define CONST_YEL   2
+#define CONST_GREEN 3
 extern int main_status;
 extern int sub_status;
 
@@ -102,7 +105,6 @@ extern int led_idx;
 #define GREEN_SUB_2		GREEN2_GPIO_Port, GREEN2_Pin
 #define GREEN_SUB_4		GREEN4_GPIO_Port, GREEN4_Pin
 
-//extern int toggleFlag;
 
 //==================================================START MODE CONTROL DEFINE=======================================================
 extern int tempRed;
