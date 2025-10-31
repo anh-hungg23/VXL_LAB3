@@ -115,6 +115,7 @@ void saveManualTime(){
 			tempYel = CONST_YEL;
 			tempGreen = CONST_GREEN;
 		}
+
 		switch(manual_status) {
 		case MAN_RED:
 			timeRed   = tempRed   * 1000;
